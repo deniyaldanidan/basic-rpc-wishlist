@@ -1,0 +1,5 @@
+export const BADREQUESTSTATUS = 400;
+export const GOODREQUESTSTATUS = 200;
+export const JSONPARSEERRORCODE = -32700;
+export const INVALIDREQCODE = -32600;
+export const METHODNOTFOUNDCODE = -32601;

@@ -1,8 +1,28 @@
 
 # Basic Json-RPC Study
 
+## Goal:
 > [!NOTE]
 > Goal of this study is to learn about Json-RPC and Build a basic implementation of it in Backend & Frontend. We are building an wishlist-app with node + express.js, zod, drizzle-orm, Html, css, js and sqlite.
+
+## Table Of Contents:
+- [Basic Json-RPC Study](#basic-json-rpc-study)
+	- [Goal:](#goal)
+	- [Table Of Contents:](#table-of-contents)
+	- [Study:](#study)
+		- [Basic Object Structure:](#basic-object-structure)
+			- [Request Object:](#request-object)
+			- [Response Object:](#response-object)
+			- [Notification Object:](#notification-object)
+			- [Parameter Structure:](#parameter-structure)
+			- [Error Object:](#error-object)
+		- [Batch requests:](#batch-requests)
+		- [Error Codes:](#error-codes)
+	- [Roadmap:](#roadmap)
+	- [Resources:](#resources)
+		- [Collected Info's:](#collected-infos)
+		- [Other Resources:](#other-resources)
+
 
 ## Study:
 ### Basic Object Structure:
@@ -21,7 +41,7 @@
 	"jsonrpc": "2.0", // json-rpc version-2
 	"result" : [], // Should be there on Success, But if failed Should not exist
 	"error": [], // Should be there on Failure, But if Success should not exist
-	"id": string | number // Should be 
+	"id": string | number
 }
 ```
 #### Notification Object:
@@ -47,28 +67,32 @@ The requests can be batched and can be send in a single request. For example:
 ```
 ### Error Codes:
 Error codes from `-32768` to `-32000` are reserved for pre-defined errors.
-|Code|message|meaning|
-|----|----|---|
-|-32700| Parse error | Invalid json received by server or error occured while parsing the json |
-| -32600 | Invalid Request | Json sent is not an valid request object |
-| -32601 | Method not found | The method does not exist / is not available |
-| -32602 | Invalid params | Invalid method parameter(s) |
-| -32603 | Internal error | Internal JSON-RPC error |
-| -32000 to -32099 | Server error | Reserved for implementation-defined server-errors|
+| Code             | message          | meaning                                                                 |
+| ---------------- | ---------------- | ----------------------------------------------------------------------- |
+| -32700           | Parse error      | Invalid json received by server or error occured while parsing the json |
+| -32600           | Invalid Request  | Json sent is not an valid request object                                |
+| -32601           | Method not found | The method does not exist / is not available                            |
+| -32602           | Invalid params   | Invalid method parameter(s)                                             |
+| -32603           | Internal error   | Internal JSON-RPC error                                                 |
+| -32000 to -32099 | Server error     | Reserved for implementation-defined server-errors                       |
 
 ## Roadmap:
 - [x] Init an basic express.js server
 - [x] Handle the first basic rpc-call
-- [ ] Handle Parse error (Invalid Json error)
-- [ ] Handle method does not exist error
+- [x] Handle Parse error (Invalid Json error)
+- [x] Invalid method handler
+- [x] Throw an `-32600` error on Invalid id `(id !== number or id !== string or id is an empty String)`
+- [x] Handle method does not exist error
 - [ ] Handle Invalid method param(s) error
+- [ ] Add drizzle and start writing schema
 
 
-## Collected Info's:
+## Resources:
+### Collected Info's:
 1. [About RPC - from WIKI](https://en.wikipedia.org/wiki/Remote_procedure_call)
 2. [JSON-RPC Specification](https://www.jsonrpc.org/specification)
 
-## Other Resources:
+### Other Resources:
 1. [Implementation of json-rpc-protocol - blog](https://mcpmarket.com/server/json-rpc-protocol)
 2. [Implementation of json-rpc-protocol - code](https://github.com/Sabari-Vasan-SM/JSON-RPC-Protocol/tree/main)
 3. [npm - json-rpc-2.0](https://www.npmjs.com/package/json-rpc-2.0)
