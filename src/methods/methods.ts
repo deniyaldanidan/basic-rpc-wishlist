@@ -1,5 +1,8 @@
+import { sayHello, sayHelloParser } from "./sayHello";
+
 export const methods: any = {
-  sayHello: (name: string) => {
-    return { greet: `Hello ${name}` };
+  sayHello: {
+    method: sayHello,
+    parser: sayHelloParser,
   },
 };

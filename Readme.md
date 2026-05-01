@@ -83,7 +83,8 @@ Error codes from `-32768` to `-32000` are reserved for pre-defined errors.
 - [x] Invalid method handler
 - [x] Throw an `-32600` error on Invalid id `(id !== number or id !== string or id is an empty String)`
 - [x] Handle method does not exist error
-- [ ] Handle Invalid method param(s) error
+- [x] Handle Invalid method param(s) error
+- [ ] Handle Batch Requests
 - [ ] Add drizzle and start writing schema
 
 
