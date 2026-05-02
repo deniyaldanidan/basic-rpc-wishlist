@@ -3,7 +3,7 @@
 
 ## Goal:
 > [!NOTE]
-> Goal of this study is to learn about Json-RPC and Build a basic implementation of it in Backend & Frontend. We are building an wishlist-app with node + express.js, zod, drizzle-orm, Html, css, js and sqlite.
+> Goal of this study is to learn about Json-RPC and Build a basic implementation of it in Backend & Frontend. With node, express.js & zod.
 
 ## Table Of Contents:
 - [Basic Json-RPC Study](#basic-json-rpc-study)
@@ -19,6 +19,9 @@
 		- [Batch requests:](#batch-requests)
 		- [Error Codes:](#error-codes)
 	- [Roadmap:](#roadmap)
+	- [Sample:](#sample)
+		- [Request:](#request)
+		- [Response:](#response)
 	- [Resources:](#resources)
 		- [Collected Info's:](#collected-infos)
 		- [Other Resources:](#other-resources)
@@ -84,9 +87,75 @@ Error codes from `-32768` to `-32000` are reserved for pre-defined errors.
 - [x] Throw an `-32600` error on Invalid id `(id !== number or id !== string or id is an empty String)`
 - [x] Handle method does not exist error
 - [x] Handle Invalid method param(s) error
-- [ ] Handle Batch Requests
-- [ ] Add drizzle and start writing schema
+- [x] Handle Functions without any params
+- [x] Handle Batch Requests
 
+## Sample:
+### Request:
+```json
+[
+    {
+        "jsonrpc": "2.0",
+        "method": "sayHello",
+        "params": [
+            "sarah"
+        ],
+        "id": 1
+    },
+    {
+        "jsonrpc": "2.0",
+        "method": "sayHellos",
+        "id": 2
+    },
+    {
+        "jsonrpc": "2.0",
+        "method": "sayWhat",
+        "id": 3
+    },
+    {
+        "jsonrpc": "2.0",
+        "method": "sayHello",
+        "params": {
+            "name": "sarah"
+        },
+        "id": 4
+    }
+]
+```
+### Response:
+```json
+[
+    {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": {
+            "greet": "Hello sarah"
+        }
+    },
+    {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "error": {
+            "code": -32601,
+            "message": "Method not found"
+        }
+    },
+    {
+        "jsonrpc": "2.0",
+        "id": 3,
+        "result": {
+            "msg": "What"
+        }
+    },
+    {
+        "jsonrpc": "2.0",
+        "id": 4,
+        "result": {
+            "greet": "Hello sarah"
+        }
+    }
+]
+```
 
 ## Resources:
 ### Collected Info's:
